@@ -1,7 +1,7 @@
 package jpabook.jpashop.domain.service;
 
 import jpabook.jpashop.domain.item.Item;
-import jpabook.jpashop.domain.repository.itemRepository;
+import jpabook.jpashop.domain.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class itemService {
 
-    private final itemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Transactional
     public void saveItem(Item item) {
@@ -24,7 +24,7 @@ public class itemService {
         return itemRepository.findAll();
     }
 
-    public Item findOne(Long id) {
-        return itemRepository.findOne(id);
+    public Item findOne(Long orderId) {
+        return itemRepository.findOne(orderId);
     }
 }
