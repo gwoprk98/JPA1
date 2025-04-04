@@ -1,20 +1,19 @@
 package jpabook.jpashop.domain;
 
-import jakarta.persistence.*;
-import jpabook.jpashop.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
+import jpabook.jpashop.domain.item.Item;
+
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class Category {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     @Column(name = "category_id")
     private Long id;
 
@@ -22,8 +21,8 @@ public class Category {
 
     @ManyToMany
     @JoinTable(name = "category_item",
-        joinColumns = @JoinColumn(name = "category_id"),
-        inverseJoinColumns = @JoinColumn(name = "item_id"))
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,4 +37,5 @@ public class Category {
         this.child.add(child);
         child.setParent(this);
     }
+
 }

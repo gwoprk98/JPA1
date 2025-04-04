@@ -1,11 +1,10 @@
-package jpabook.jpashop.domain.service;
+package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.item.Item;
-import jpabook.jpashop.domain.repository.ItemRepository;
+import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -20,11 +19,22 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    /**
+     * 영속성 컨텍스트가 자동 변경
+     */
+    @Transactional
+    public void updateItem(Long id, String name, int price, int stockQuantity) {
+        Item item = itemRepository.findOne(id);
+        item.setName(name);
+        item.setPrice(price);
+        item.setStockQuantity(stockQuantity);
+    }
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
 
-    public Item findOne(Long orderId) {
-        return itemRepository.findOne(orderId);
+    public Item findOne(Long itemId) {
+        return itemRepository.findOne(itemId);
     }
 }
