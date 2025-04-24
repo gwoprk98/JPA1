@@ -14,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MemberServiceTest {
 
     @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Test
     public void 회원가입() throws Exception {
@@ -27,7 +28,7 @@ public class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         //Then
-        assertEquals(member, memberRepository.findOne(saveId));
+        assertEquals(member, memberRepository.findById(saveId));
     }
 
     @Test
